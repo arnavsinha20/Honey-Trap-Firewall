@@ -8,11 +8,9 @@ import sys
 import subprocess
 from client import HoneyTrapClient
 
-# ----------------------
-# 📡 Connection Setup
-# ----------------------
+
 # For multi-PC setup: Change 'localhost' to the server's IP address
-SERVER_HOST = '192.168.155.34'  # localhost / IP address (e.g., 192.168.1.5)
+SERVER_HOST = 'localhost'  # localhost / IP address (e.g., 192.168.1.5)
 CONTROL_PORT = 5000
 DATA_PORT = 5001
 
@@ -23,9 +21,6 @@ def get_client():
         get_client.instance.connect()
     return get_client.instance
 
-# ----------------------
-# 🔐 Login Management
-# ----------------------
 class LoginHandler:
     @staticmethod
     def login(username, password, port=None):
@@ -91,9 +86,6 @@ class LoginHandler:
         client = get_client()
         return client.get_ports()
 
-# ----------------------
-# 👨‍💼 Admin Functions
-# ----------------------
 class AdminHandler:
     @staticmethod
     def get_attackers():
@@ -143,9 +135,6 @@ class AdminHandler:
         client = get_client()
         return client.update_port(port, status, honeypot)
 
-# ----------------------
-# 👤 User Functions
-# ----------------------
 class UserHandler:
     @staticmethod
     def update_activity(username):
@@ -182,9 +171,6 @@ class UserHandler:
         except Exception:
             return None
 
-# ----------------------
-# 🖥️ Portal Integration
-# ----------------------
 def open_socket_user_portal(port, username="user"):
     """Open user portal with socket communication"""
     # Import within function to avoid circular imports
